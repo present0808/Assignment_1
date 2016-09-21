@@ -32,7 +32,7 @@ void printpacket(u_char *a, const struct pcap_pkthdr *pkthdr, const u_char *pack
 		return;
 	}
 	
-	tcpheader = (struct tcphdr*)(packet+14+4*(ipheader->ip_hl));
+	tcpheader = (struct tcphdr*)(packet+ETHERNET_HEADER_SIZE+4*(ipheader->ip_hl));
 	printf("\n");
 	printf("Source      MAC : %s\n", ether_ntoa((struct ether_addr*)ethernetheader->ether_shost));
 	printf("Destination MAC : %s\n", ether_ntoa((struct ether_addr*)ethernetheader->ether_dhost));	
