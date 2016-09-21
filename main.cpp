@@ -7,6 +7,7 @@
 #include <netinet/ip.h>
 #include <netinet/tcp.h>
 
+#define ETHERNET_HEADER_SIZE 14
 
 void printpacket(u_char *a, const struct pcap_pkthdr *pkthdr, const u_char *packet)
 {
@@ -24,7 +25,7 @@ void printpacket(u_char *a, const struct pcap_pkthdr *pkthdr, const u_char *pack
 	}
 	
 	// TCP Protocol Check
-	ipheader = (struct ip*)(packet+14);
+	ipheader = (struct ip*)(packet+ETHERNET_HEADER_SIZE);
 	if(ipheader -> ip_p != IPPROTO_TCP)
 	{
 		printf("Not TCP Protocol");
